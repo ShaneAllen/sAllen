@@ -3,7 +3,7 @@
 <h1>Product Details for {{ object.name }} </h1>
 
 <div>
-<img src="{{ object.photo.url }}" width="75">
+<img src="{{ object.photo.url }}" width="75"> 
 </div>
 <div>
 	<p>
@@ -28,14 +28,22 @@
 </div>
 
 <h2>Reviews</h2>
+<div>
+<a href="{% url 'review-create' %}" class="btn btn-primary mb-2"> Add Review</a>
+</div>
 	{% for review in object.review_set.all %}
 		<div class="border border-dark mb-2">
-			<h4> <a class="text-dark" href="{% url 'review-detail' review.id %}"> Review</h4>
+
+			<h4> <a class="text-dark" href="{% url 'review-detail' review.id %}"> Review </a></h4>
+
 			<div><img class="rounded-circle account-img" src="{{ review.author.profile.image.url }}" 
 				width="50"></div>
+
 			<p><span class="pr-3"><b>Review By:</b> {{ review.author.profile.first_name }}.
 			{{ review.author.profile.last_name }}
-			</span> <b>Given Rating:</b> {{ review.rating }}</p>
+			</span> 
+			<b>Given Rating:</b> {{ review.rating }}</p>
+
 			<p>{{ review.review_text }}</p>
 		</div>
 	{% endfor %}
