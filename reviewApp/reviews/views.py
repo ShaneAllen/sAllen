@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Product, Review
-from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 def home(request):
@@ -32,3 +32,17 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
 
+
+class ReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	model = Review
+	fields = ['rating', 'review_text', 'date']
+
+	def form_valid(self, form):
+		#form.instance.author = self.request.user
+		return super().form_valid(form)
+
+	def test_func(self):
+		review = self.get_object()
+		if self.request.user == review.author:
+			return True
+		return False

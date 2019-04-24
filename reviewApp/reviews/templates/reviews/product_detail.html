@@ -45,7 +45,9 @@
 			<b>Given Rating:</b> {{ review.rating }}</p>
 
 			<p>{{ review.review_text }}</p>
+			<a href="{% url 'review-update' review.id %}" class="btn btn-primary mb-2"> Update</a>
 		</div>
+
 	{% endfor %}
 
 {% endblock content %}
