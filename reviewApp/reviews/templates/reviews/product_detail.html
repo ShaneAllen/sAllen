@@ -46,6 +46,7 @@
 
 			<p>{{ review.review_text }}</p>
 			<a href="{% url 'review-update' review.id %}" class="btn btn-primary mb-2"> Update</a>
+			<a href="{% url 'review-delete' review.id %}" class="btn btn-danger mb-2"> Delete</a>
 		</div>
 
 	{% endfor %}

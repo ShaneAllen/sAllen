@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Product, Review
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
@@ -40,6 +40,16 @@ class ReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	def form_valid(self, form):
 		#form.instance.author = self.request.user
 		return super().form_valid(form)
+
+	def test_func(self):
+		review = self.get_object()
+		if self.request.user == review.author:
+			return True
+		return False
+
+class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Review
+	success_url = '/products'
 
 	def test_func(self):
 		review = self.get_object()
