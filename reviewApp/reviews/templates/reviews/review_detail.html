@@ -1,0 +1,14 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+
+<div class="border border-dark mb-2">
+	<div><img class="rounded-circle account-img" src="{{ review.author.profile.image.url }}" 
+		width="50"></div>
+	<p><span class="pr-3"><b>Review By:</b> {{ review.author.profile.first_name }}.
+	{{ review.author.profile.last_name }}
+	</span> <b>Given Rating:</b> {{ review.rating }}</p>
+	<p>{{ review.review_text }}</p>
+</div>
+
+
+{% endblock content %}

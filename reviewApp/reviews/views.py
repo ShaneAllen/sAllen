@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Review
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
@@ -20,9 +20,9 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
 	model = Product
 
-	#def get_context_data(self, **kwargs):
-		#context = super().get_context_data(**kwargs)
-		#context['reviews']
+class ReviewDetailView(DetailView):
+	model = Review
+	
 #def products(request):
 
 #	products_list = {

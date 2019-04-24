@@ -30,6 +30,7 @@
 <h2>Reviews</h2>
 	{% for review in object.review_set.all %}
 		<div class="border border-dark mb-2">
+			<h4> <a class="text-dark" href="{% url 'review-detail' review.id %}"> Review</h4>
 			<div><img class="rounded-circle account-img" src="{{ review.author.profile.image.url }}" 
 				width="50"></div>
 			<p><span class="pr-3"><b>Review By:</b> {{ review.author.profile.first_name }}.
