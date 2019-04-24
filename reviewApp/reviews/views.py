@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from .models import Product
+from django.views.generic import ListView, DetailView
+
 # Create your views here.
 def home(request):
 	return render(request, 'reviews/home.html',{'title':'Home'})
@@ -9,7 +12,22 @@ def about(request):
 def contact(request):
 	return render(request, 'reviews/contact.html',{'title':'Contact us'})
 
-def products(request):
-	return render(request, 'reviews/products.html',{'title':'Products'})
+class ProductListView(ListView):
+	model = Product
+	template_name = 'reviews/products.html'
+	object_context_name = 'products'
+
+class ProductDetailView(DetailView):
+	model = Product
+
+	#def get_context_data(self, **kwargs):
+		#context = super().get_context_data(**kwargs)
+		#context['reviews']
+#def products(request):
+
+#	products_list = {
+#		'products': Product.objects.all()
+#	}
+#	return render(request, 'reviews/products.html', products_list)
 
 
