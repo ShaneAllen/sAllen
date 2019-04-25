@@ -32,7 +32,7 @@
 <a href="{% url 'review-create' %}" class="btn btn-primary mb-2"> Add Review</a>
 </div>
 	{% for review in object.review_set.all %}
-		<div class="border border-dark mb-2">
+		<div class="one mb-2">
 
 			<h4> <a class="text-dark" href="{% url 'review-detail' review.id %}"> Review </a></h4>
 
